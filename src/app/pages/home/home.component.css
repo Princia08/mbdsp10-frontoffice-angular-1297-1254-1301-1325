@@ -1,0 +1,11 @@
+.sidebar-container {
+  height: 100vh;
+}
+
+mat-drawer {
+  width: 250px;
+}
+
+mat-sidenav-content .content {
+  padding: 16px;
+}
