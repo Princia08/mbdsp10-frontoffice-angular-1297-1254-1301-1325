@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="header">
+    <button class="btn btn-success btn-product">Mes produits</button>
+  </div>
+  <div class="layout">
+    @for(item of items; track item.title) {
+      <div class="card">
+        <div class="img">
+          <img src="assets/img/produits/haltere.png" alt="altere">
+        </div>
+        <button class="btn btn-primary btn-sm exchange">échanger</button>
+        <div class="details">
+          <p class="title">{{ item.title }}</p>
+          <a>{{ item.owner }}</a>
+          <a>  .  </a>
+          <a>{{ item.date }}</a>
+        </div>
+      </div>
+    }
+  </div>
+</div>

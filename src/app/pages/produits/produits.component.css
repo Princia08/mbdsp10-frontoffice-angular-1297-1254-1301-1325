@@ -1,0 +1,76 @@
+.container {
+  padding: 2% 1%;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 22px;
+  padding-top: 2%;
+}
+
+.card {
+    width: 205px;
+    height: 300px;
+    background: #f0f0f0;
+    text-align: center;
+    font-family: inherit;
+    border-radius: 0;
+}
+
+.exchange {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 15px auto;
+  align-items: center;
+  width: 75%;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #0d6dfb;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.img {
+  display: flex;
+  margin: 30px auto 0 auto;
+  width: 80%;
+  height: 100%;
+  font-size: 11px;
+  justify-content: center;
+  align-items: center;
+}
+
+.img img{
+  width: 100%;
+}
+
+.card:hover .btn {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.details {
+  font-size: 13px;
+  padding-bottom: 7px;
+  background-color: #f8f8f8;
+}
+
+.title {
+  padding: 10px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  margin-right: 22px;
+}
+
+.btn-product {
+  margin-left: auto; /* Pushes the button to the right */
+  background-color: #59b746;
+  border: none;
+}

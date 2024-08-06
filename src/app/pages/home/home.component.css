@@ -3,9 +3,39 @@
 }
 
 mat-drawer {
-  width: 250px;
+  width: 240px;
 }
 
 mat-sidenav-content .content {
   padding: 16px;
+}
+
+mat-nav-list {
+  padding: 10% 6%;
+  margin: 0;
+  list-style: none;
+}
+
+mat-list-item {
+  display: block;
+  padding: 12px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+mat-list-item:hover {
+  background-color: #f0f0f0;
+}
+
+mat-list-item.active {
+  background-color: #e0e0e0;
+  color: #000;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  mat-drawer {
+    display: none;
+  }
 }
