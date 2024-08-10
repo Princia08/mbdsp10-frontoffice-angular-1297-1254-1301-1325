@@ -64,13 +64,16 @@
 }
 
 .header {
-  display: flex;
-  justify-content: flex-end; /* Aligns the button to the right */
-  margin-right: 22px;
+  text-align: right;
 }
 
 .btn-product {
-  margin-left: auto; /* Pushes the button to the right */
+  margin-right: 16px;
   background-color: #59b746;
   border: none;
+}
+
+.btn-product a {
+  text-decoration: none;
+  color: white;
 }

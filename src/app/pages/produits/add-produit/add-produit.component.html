@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <form [formGroup]="produitForm" class="form_container">
+        <div class="title_container">
+          <p class="title">Ajouter un produit</p>
+          <span class="subtitle">Entrer les informations concernant le produit que vous vouliez échanger</span>
+        </div>
+        <br>
+        <div class="input_container">
+          <label class="input_label">Nom</label>
+          <input placeholder="Nom du produit" type="text" class="input_field" formControlName="nom">
+        </div>
+        <div class="input_container">
+          <label class="input_label">Description</label>
+          <textarea placeholder="..." type="text" style="height: 75px" class="input_field" formControlName="description"></textarea>
+        </div>
+
+        <input type="file" (change)="onFileSelected($event);" #fileUpload style="display: none">
+
+        <div class="input_container">
+          <label class="input_label">Image</label>
+          <div class="input_file">
+            <a style="color: #7e8088">{{ fileName || "Choisissez une image :" }}</a>
+            <button mat-mini-fab style="background: #2ba0a4" class="upload-btn" (click)="fileUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <button title="Add" type="submit" class="add_btn">
+          <span>Ajouter</span>
+        </button>
+      </form>
+    </div>
+    <div class="col-md-5">
+      <img src="assets/svg/add-product.svg">
+    </div>
+  </div>
+</div>
