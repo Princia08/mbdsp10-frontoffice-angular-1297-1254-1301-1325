@@ -1,7 +1,7 @@
 .container-fluid {
   display: flex;
   justify-content: center;
-  padding-top: 4%;
+  padding-top: 3%;
 }
 
 .row {
