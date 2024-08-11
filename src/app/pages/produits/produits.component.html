@@ -9,7 +9,7 @@
         <div class="img">
           <img src="assets/img/produits/haltere.png" alt="altere">
         </div>
-        <button class="btn btn-primary btn-sm exchange">voir détails</button>
+        <button class="btn btn-primary btn-sm exchange" (click)="seeDetails(item.id)" >voir détails</button>
         <div class="details">
           <p class="title">{{ item.title }}</p>
           <a>{{ item.owner }}</a>

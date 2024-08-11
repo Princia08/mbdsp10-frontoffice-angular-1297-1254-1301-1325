@@ -4,6 +4,7 @@ import {InscriptionComponent} from "./pages/authentification/inscription/inscrip
 import {HomeComponent} from "./pages/home/home.component";
 import {ProduitsComponent} from "./pages/produits/produits.component";
 import {AddProduitComponent} from "./pages/produits/add-produit/add-produit.component";
+import {DetailsProduitComponent} from "./pages/produits/details-produit/details-produit.component";
 
 export const routes: Routes = [
     { path : '', component : LoginComponent },
@@ -16,7 +17,8 @@ export const routes: Routes = [
         { path : '', component : ProduitsComponent },
         { path : 'produits', component : ProduitsComponent },
         { path : 'addProduit', component : AddProduitComponent },
-        { path : 'login', component : LoginComponent }
+        { path : 'login', component : LoginComponent },
+        { path : 'produits/details-produit/:id', component : DetailsProduitComponent }
       ]
     }
 ];

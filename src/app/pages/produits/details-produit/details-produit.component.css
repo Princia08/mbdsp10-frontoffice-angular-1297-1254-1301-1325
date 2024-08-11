@@ -1,0 +1,41 @@
+.container {
+  margin-top: 50px;
+}
+
+.row {
+  padding: 15px 50px;
+}
+
+img {
+  width: 100%;
+}
+
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-line {
+  width: 50px;
+  border: 1px solid #000000;
+  margin: 15px 0;
+}
+
+.product-description {
+  font-size: 16px;
+  color: #333;
+  margin-top: 5px;
+}
+
+.btn-product {
+  margin-right: 16px;
+  background-color: #59b746;
+  border: none;
+}
+
+.btn-product a {
+  text-decoration: none;
+  color: white;
+}
+
