@@ -9,7 +9,7 @@ import {DetailsProduitComponent} from "./pages/produits/details-produit/details-
 export const routes: Routes = [
     { path : '', component : LoginComponent },
     { path : 'login', component : LoginComponent },
-    { path : 'signin', component : InscriptionComponent },
+    { path : 'signup', component : InscriptionComponent },
     {
       path : 'home',
       component : HomeComponent,
