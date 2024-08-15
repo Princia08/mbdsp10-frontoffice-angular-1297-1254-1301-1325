@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <form [formGroup]="produitForm" class="form_container">
+        <div class="title_container">
+          <p class="title">Modifier un produit</p>
+          <span class="subtitle">Modifier les informations concernant le produit que vous vouliez changer</span>
+        </div>
+        <br>
+        <div class="input_container">
+          <label class="input_label">Nom</label>
+          <input placeholder="Nom du produit" type="text" class="input_field" formControlName="nom">
+        </div>
+        <div class="input_container">
+          <label class="input_label">Description</label>
+          <textarea placeholder="..." type="text" style="height: 75px" class="input_field" formControlName="description"></textarea>
+        </div>
+
+        <button title="Update" type="submit" class="add_btn">
+          <span>Modifier</span>
+        </button>
+      </form>
+    </div>
+    <div class="col-md-5">
+      <img src="assets/svg/add-product.svg">
+    </div>
+  </div>
+</div>

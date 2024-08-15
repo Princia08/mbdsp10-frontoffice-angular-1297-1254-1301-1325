@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-details-produit',
@@ -10,7 +10,11 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class DetailsProduitComponent {
   id = ''
-  constructor(private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute) {
       this.id = this.route.snapshot.params['id'];
+  }
+
+  seeDetails(id: string) {
+    this.router.navigate(['/home/update-produit', id]);
   }
 }

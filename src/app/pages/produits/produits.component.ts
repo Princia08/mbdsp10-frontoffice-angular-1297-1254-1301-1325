@@ -22,6 +22,6 @@ export class ProduitsComponent {
   }));
 
   seeDetails(id: string) {
-    this.router.navigate(['/home/produits/details-produit', id]);
+    this.router.navigate(['/home/details-produit', id]);
   }
 }
