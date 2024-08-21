@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5 d-flex justify-content-center align-items-center" style="margin-right: 15px; background: #e8e8e8;">
-        <img src="assets/img/produits/haltere.png" alt="haltere">
+        <img src="{{ product.product_image }}" alt="{{ product.product_name }}">
     </div>
     <div class="col-md-6">
       <div class="product">
-        <div class="product-title">Haltere</div>
+        <div class="product-title">{{ product.product_name }}</div>
         <hr class="product-line">
-        <div class="product-description">Equipement de musculation constitué d'une barre courte, généralement en métal, avec des poids fixés à chaque extrémité. Il est utilisé pour effectuer une variété d'exercices de renforcement musculaire, visant à développer la force, la masse musculaire, et l'endurance. Les haltères peuvent être utilisés individuellement ou par paire, et permettent de travailler différents groupes musculaires en ciblant des mouvements spécifiques, comme les flexions des bras (biceps curl), les développés couchés (bench press), ou les squats. Ils sont disponibles en poids fixes ou ajustables.</div>
+        <div class="product-description">{{ product.description }}</div>
         <div style="display: inline-flex;">
           <div style="margin-top: 15px; width: 38px; height: 38px; border-radius: 50%; overflow: hidden;">
             <img src="assets/img/produits/person.png" style="width: 100%; height: 100%; object-fit: cover"/>
           </div>
-          <a style="display:flex; margin-top: 20px; margin-left: 10px;">John Doe</a>
+          <a style="display:flex; margin-top: 20px; margin-left: 10px;">{{ product.actual_owner.username }}</a>
         </div>
         <div style="margin-top: 15px">
           <button class="btn btn-primary btn-product" style="background: #2baac6" (click)="seeDetails(id)">Modifier</button>
