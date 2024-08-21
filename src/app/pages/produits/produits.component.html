@@ -4,19 +4,19 @@
     <button class="btn btn-success btn-product" style="background: #54cc5e">Mes produits</button>
   </div>
   <div class="layout">
-    @for(item of items; track item.title) {
-      <div class="card">
-        <div class="img">
-          <img src="assets/img/produits/haltere.png" alt="altere">
+      @for(product of products; track product.id) {
+        <div class="card">
+          <div class="img">
+            <img src="{{ product.product_image }}">
+          </div>
+          <button class="btn btn-primary btn-sm exchange" (click)="seeDetails(product.id)" >voir détails</button>
+          <div class="details">
+            <p class="title">{{ product.product_name }}</p>
+            <a>{{ product.actual_owner.username }}</a>
+            <a>  .  </a>
+            <a>{{ product.createdAt | date:'dd-MM-yyyy HH:mm:ss' }}</a>
+          </div>
         </div>
-        <button class="btn btn-primary btn-sm exchange" (click)="seeDetails(item.id)" >voir détails</button>
-        <div class="details">
-          <p class="title">{{ item.title }}</p>
-          <a>{{ item.owner }}</a>
-          <a>  .  </a>
-          <a>{{ item.date }}</a>
-        </div>
-      </div>
-    }
+      }
   </div>
 </div>
