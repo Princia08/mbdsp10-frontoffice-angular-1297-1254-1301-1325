@@ -23,4 +23,8 @@ export class ProduitService {
   getProductById(id: string): Observable<any> {
     return this.http.get(this.url + '/products/' + id);
   }
+
+  getProductByUserId(userId: string): Observable<any> {
+    return this.http.get(this.url + '/products?userId='+userId);
+  }
 }

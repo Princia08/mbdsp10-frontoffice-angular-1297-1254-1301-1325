@@ -28,7 +28,7 @@ export class LoginComponent {
     if(this.userForm.valid) {
       this.userService.login(this.userForm.value).subscribe({
         next: res => {
-          this.authService.logIn(res.data.access_token)
+          this.authService.logIn(res.data.access_token, res.data.user.id)
         },
         error: err => {
           this.errorMessage = err.error.message

@@ -10,8 +10,9 @@ export class AuthService {
   // propriété pour savoir si l'utilisateur est connecté
   loggedIn = false;
 
-  logIn(token: string) {
+  logIn(token: string, id: string) {
     // on stock le token dans le localStorage du header
+    localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     this.router.navigateByUrl('/home');
     this.loggedIn = true;
@@ -20,6 +21,7 @@ export class AuthService {
   logOut() {
     // on retire le token du localStorage du header
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
     this.router.navigateByUrl('/');
     this.loggedIn = false;
   }
