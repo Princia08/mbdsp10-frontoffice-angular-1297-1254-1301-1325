@@ -4,6 +4,7 @@ import {ProduitService} from "../../../services/produit.service";
 import {Observable} from "rxjs";
 import {DatePipe, NgClass} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {ExchangeService} from "../../../services/exchange.service";
 
 @Component({
   selector: 'app-details-produit',
@@ -16,6 +17,7 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './details-produit.component.html',
   styleUrl: './details-produit.component.css'
 })
+
 export class DetailsProduitComponent implements OnInit {
   id: string = '';
   product: any;
@@ -28,7 +30,7 @@ export class DetailsProduitComponent implements OnInit {
   selectedMyIds: string[] = [];
   delivery_address: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute, private produitService: ProduitService) {
+  constructor(private router: Router, private route: ActivatedRoute, private produitService: ProduitService, private exchangeService: ExchangeService) {
   }
 
   ngOnInit() {
@@ -109,9 +111,21 @@ export class DetailsProduitComponent implements OnInit {
   }
 
   confirm() {
-    console.log(this.selectedIds);
-    console.log(this.selectedMyIds);
-    console.log("owner "+this.idUserForExchange);
-    console.log("id User "+this.idUser);
+    let exchange = {
+      "owner_id": this.idUserForExchange,
+      "taker_id": this.idUser,
+      "owner_products": this.selectedIds,
+      "taker_products": this.selectedMyIds,
+      "delivery_address": this.delivery_address
+    };
+
+    this.exchangeService.createExchange(exchange).subscribe({
+      next: res => {
+        this.router.navigate(['/home/produits']);
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 }
