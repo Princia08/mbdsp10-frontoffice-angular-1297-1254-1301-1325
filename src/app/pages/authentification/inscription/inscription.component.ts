@@ -29,9 +29,7 @@ export class InscriptionComponent {
 
   signup() {
     this.userForm.patchValue({role: 'USER'})
-    console.log(this.userForm.value)
     if(this.userForm.valid) {
-      console.log(this.userForm.value)
       this.userService.signup(this.userForm.value).subscribe({
         next: res => {
           this.router.navigateByUrl('')

@@ -115,3 +115,14 @@ form .input_file {
   text-decoration: underline;
 }
 
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.cl-checkbox {
+  display: flex;
+  align-items: center;
+}
+

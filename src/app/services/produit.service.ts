@@ -20,6 +20,10 @@ export class ProduitService {
     return this.http.get(this.url + '/products');
   }
 
+  addProduct(product: any): Observable<any> {
+    return this.http.post(this.url + '/products', product);
+  }
+
   getProductById(id: string): Observable<any> {
     return this.http.get(this.url + '/products/' + id);
   }
