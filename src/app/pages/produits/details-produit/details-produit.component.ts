@@ -128,4 +128,15 @@ export class DetailsProduitComponent implements OnInit {
       }
     });
   }
+
+  delete() {
+    this.produitService.deleteProduct(this.id).subscribe({
+      next: res => {
+        this.router.navigate(['/home/produits']);
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+  }
 }

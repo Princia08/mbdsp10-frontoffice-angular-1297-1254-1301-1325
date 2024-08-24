@@ -18,7 +18,7 @@
             <div style="margin-top: 15px">
               @if(isMyProduct) {
                 <button class="btn btn-primary btn-product" style="background: #2baac6" (click)="updateProduct(id)">Modifier</button>
-                <button class="btn btn-success btn-product" style="background: #d33c3c">Supprimer</button>
+                <button class="btn btn-success btn-product" style="background: #d33c3c" (click)="delete()" >Supprimer</button>
               } @else {
                 <button class="btn btn-primary btn-product" style="background: #2baac6" (click)="exchange(product.actual_owner.id)">Echanger</button>
               }
