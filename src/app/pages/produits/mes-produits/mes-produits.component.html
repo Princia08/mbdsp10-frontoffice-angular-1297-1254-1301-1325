@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="header">
+    <button class="btn btn-primary btn-product" style="background: #2baac6"><a href="home/addProduit">Ajouter</a></button>
+  </div>
+  <div class="layout">
+    @for(product of products; track product.id) {
+      <div class="card">
+        <div class="img">
+          <img src="{{ product.product_image }}">
+        </div>
+        <button class="btn btn-primary btn-sm exchange" (click)="seeDetails(product.id)" >voir détails</button>
+        <div class="details">
+          <p class="title">{{ product.product_name }}</p>
+          <a>{{ product.actual_owner.username }}</a>
+          <a>  .  </a>
+          <a>{{ product.createdAt | date:'dd-MM-yyyy HH:mm:ss' }}</a>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -7,6 +7,7 @@ import {AddProduitComponent} from "./pages/produits/add-produit/add-produit.comp
 import {DetailsProduitComponent} from "./pages/produits/details-produit/details-produit.component";
 import {UpdateProduitComponent} from "./pages/produits/update-produit/update-produit.component";
 import {AddPropositionComponent} from "./pages/propositions/add-proposition/add-proposition.component";
+import {MesProduitsComponent} from "./pages/produits/mes-produits/mes-produits.component";
 
 export const routes: Routes = [
     { path : '', component : LoginComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
       children : [
         { path : '', component : ProduitsComponent },
         { path : 'produits', component : ProduitsComponent },
+        { path : 'mes-produits', component : MesProduitsComponent },
         { path : 'addProduit', component : AddProduitComponent },
         { path : 'login', component : LoginComponent },
         { path : 'details-produit/:id', component : DetailsProduitComponent },
