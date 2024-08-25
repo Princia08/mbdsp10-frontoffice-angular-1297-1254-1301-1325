@@ -11,7 +11,7 @@
         <p><strong>Taker products: </strong>{{ exchange.takerProducts }}</p>
         <p><strong>Delivery address: </strong>{{ exchange.delivery_address }}</p>
       </div>
-      <div class="status-tag" [ngClass]="{'created': exchange.status === 'CREATED', 'cancelled': exchange.status === 'CANCELLED', 'blocked': exchange.status === 'BLOCKED', 'received': exchange.status === 'RECEIVED'}">
+      <div class="status-tag" [ngClass]="{'created': exchange.status === 'CREATED', 'cancelled': exchange.status === 'CANCELLED', 'blocked': exchange.status === 'BLOCKED', 'accepted': exchange.status === 'ACCEPTED', 'received': exchange.status === 'RECEIVED'}">
         {{ exchange.status }}
       </div>
     </div>

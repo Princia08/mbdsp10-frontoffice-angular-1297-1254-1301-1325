@@ -45,6 +45,10 @@
   background-color: #9e9e9e;
 }
 
+.status-tag.accepted {
+  background-color: #ffb700;
+}
+
 .status-tag.blocked {
   background-color: #f44336;
 }
