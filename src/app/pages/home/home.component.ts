@@ -7,7 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {map, Observable, shareReplay} from "rxjs";
 import {MatButtonModule} from "@angular/material/button";
-import {RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -27,4 +27,13 @@ import {RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from "@angular
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  constructor(private router: Router) {
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    this.router.navigateByUrl('/login');
+  }
 }
