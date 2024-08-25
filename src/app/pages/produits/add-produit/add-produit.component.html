@@ -16,17 +16,17 @@
           <textarea placeholder="..." type="text" style="height: 75px" class="input_field" formControlName="description"></textarea>
         </div>
 
-<!--        <input type="file" (change)="onFileSelected($event);" #fileUpload style="display: none">-->
+        <input type="file" (change)="onFileSelected($event);" #fileUpload style="display: none">
 
-<!--        <div class="input_container">-->
-<!--          <label class="input_label">Image</label>-->
-<!--          <div class="input_file">-->
-<!--            <a style="color: #7e8088">{{ fileName || "Choisissez une image :" }}</a>-->
-<!--            <button mat-mini-fab style="background: #2ba0a4" class="upload-btn" (click)="fileUpload.click()">-->
-<!--              <mat-icon>attach_file</mat-icon>-->
-<!--            </button>-->
-<!--          </div>-->
-<!--        </div>-->
+        <div class="input_container">
+          <label class="input_label">Image</label>
+          <div class="input_file">
+            <a style="color: #7e8088">{{ fileName || "Choisissez une image :" }}</a>
+            <button mat-mini-fab style="background: #2ba0a4" class="upload-btn" (click)="fileUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </div>
 
         <div class="checkbox-container">
           @for(categorie of categories; track categorie.id) {

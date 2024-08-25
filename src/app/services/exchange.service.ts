@@ -21,4 +21,11 @@ export class ExchangeService {
     return this.http.get(this.url + '/exchanges');
   }
 
+  acceptExchange(exchangeId: string): Observable<any> {
+    return this.http.post(this.url + '/exchanges/' + exchangeId + '/accept', {});
+  }
+
+  cancelExchange(exchangeId: string): Observable<any> {
+    return this.http.post(this.url + '/exchanges/' + exchangeId + '/cancel', {});
+  }
 }

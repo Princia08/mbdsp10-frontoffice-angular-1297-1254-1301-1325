@@ -14,6 +14,10 @@
       <div class="status-tag" [ngClass]="{'created': exchange.status === 'CREATED', 'cancelled': exchange.status === 'CANCELLED', 'blocked': exchange.status === 'BLOCKED', 'accepted': exchange.status === 'ACCEPTED', 'received': exchange.status === 'RECEIVED'}">
         {{ exchange.status }}
       </div>
+      @if(canAccept(exchange.owner_proposition.user_id, exchange.status)) {
+        <button class="btn btn-sm btn-danger btn-product" style="margin-left: 30px" (click)="cancelExchange(exchange.id)">Refuser</button>
+        <button class="btn btn-sm btn-success btn-product" style="margin-left: 10px" (click)="acceptExchange(exchange.id)">Accepter</button>
+      }
     </div>
   }
 
