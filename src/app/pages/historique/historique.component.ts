@@ -17,9 +17,12 @@ export class HistoriqueComponent implements OnInit {
 
   exchanges : any;
   idUser: string = localStorage.getItem('id') ?? '';
+  latitude: number = 0;
+  longitude: number = 0;
 
   ngOnInit() {
     this.getAllExchanges();
+    this.getCurrentLocation();
   }
 
   constructor(private router: Router, private exchangeService: ExchangeService) {
@@ -55,6 +58,32 @@ export class HistoriqueComponent implements OnInit {
     return this.idUser == ownerId && status === 'CREATED'
   }
 
+  canReceive(status: string){
+    return status === 'ACCEPTED'
+  }
+
+  receiveExchange(exchangeId: string) {
+    const data = {
+      accept: true,
+      longitude: this.longitude,
+      latitude: this.latitude
+    };
+
+    this.exchangeService.receiveExchange(exchangeId, data).subscribe();
+  }
+
+  getCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+      }, (error) => {
+      });
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  }
+
   acceptExchange(exchangeId: string){
     this.exchangeService.acceptExchange(exchangeId).subscribe({
       next: res => {
@@ -76,8 +105,6 @@ export class HistoriqueComponent implements OnInit {
       }
     });
   }
-
-
 
   openScanner() {
   }

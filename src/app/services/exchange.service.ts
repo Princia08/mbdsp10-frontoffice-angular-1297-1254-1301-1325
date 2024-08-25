@@ -28,4 +28,8 @@ export class ExchangeService {
   cancelExchange(exchangeId: string): Observable<any> {
     return this.http.post(this.url + '/exchanges/' + exchangeId + '/cancel', {});
   }
+
+  receiveExchange(exchangeId: string, data: any): Observable<any> {
+    return this.http.put(this.url + '/exchanges/' + exchangeId + '/receive', data);
+  }
 }

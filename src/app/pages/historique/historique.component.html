@@ -18,6 +18,9 @@
         <button class="btn btn-sm btn-danger btn-product" style="margin-left: 30px" (click)="cancelExchange(exchange.id)">Refuser</button>
         <button class="btn btn-sm btn-success btn-product" style="margin-left: 10px" (click)="acceptExchange(exchange.id)">Accepter</button>
       }
+      @if(canReceive(exchange.status)) {
+        <button class="btn btn-sm btn-primary btn-product" style="margin-left: 30px" (click)="receiveExchange(exchange.id)">Recevoir</button>
+      }
     </div>
   }
 
