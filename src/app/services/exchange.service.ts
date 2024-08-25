@@ -16,4 +16,9 @@ export class ExchangeService {
   createExchange(exchange: any): Observable<any> {
     return this.http.post(this.url + '/exchanges', exchange);
   }
+
+  getAllExchanges(): Observable<any> {
+    return this.http.get(this.url + '/exchanges');
+  }
+
 }

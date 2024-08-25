@@ -1,0 +1,23 @@
+<div class="container">
+  <h2 class="list-title">Liste des échanges</h2>
+
+  @for (exchange of exchanges; track exchange.id) {
+    <div class="exchange-card" >
+      <div class="exchange-info">
+        <p><strong>Date: </strong>{{ exchange.createdAt }}</p>
+        <p><strong>Owner: </strong>{{ exchange.owner_proposition.user.username }}</p>
+        <p><strong>Taker: </strong>{{ exchange.taker_proposition.user.username }}</p>
+        <p><strong>Owner products: </strong>{{ exchange.ownerProducts }}</p>
+        <p><strong>Taker products: </strong>{{ exchange.takerProducts }}</p>
+        <p><strong>Delivery address: </strong>{{ exchange.delivery_address }}</p>
+      </div>
+      <div class="status-tag" [ngClass]="{'created': exchange.status === 'CREATED', 'cancelled': exchange.status === 'CANCELLED', 'blocked': exchange.status === 'BLOCKED', 'received': exchange.status === 'RECEIVED'}">
+        {{ exchange.status }}
+      </div>
+    </div>
+  }
+
+  <div class="fab-button">
+    <button (click)="openScanner()">QR</button>
+  </div>
+</div>
