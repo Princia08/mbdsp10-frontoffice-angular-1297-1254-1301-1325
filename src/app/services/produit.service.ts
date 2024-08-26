@@ -40,4 +40,7 @@ export class ProduitService {
     return this.http.put(this.url + '/products/'+id , data);
   }
   
+  uploadImage(id: string, data: any): Observable<any> {
+    return this.http.post(this.url + '/products/uploadImage/'+id , data);
+  }
 }
