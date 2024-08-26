@@ -35,4 +35,9 @@ export class ProduitService {
   getProductByUserId(userId: string): Observable<any> {
     return this.http.get(this.url + '/products?userId='+userId);
   }
+  
+  updateProduct(id: string, data: any): Observable<any> {
+    return this.http.put(this.url + '/products/'+id , data);
+  }
+  
 }
