@@ -8,14 +8,17 @@ import {DetailsProduitComponent} from "./pages/produits/details-produit/details-
 import {UpdateProduitComponent} from "./pages/produits/update-produit/update-produit.component";
 import {MesProduitsComponent} from "./pages/produits/mes-produits/mes-produits.component";
 import {HistoriqueComponent} from "./pages/historique/historique.component";
+import {homeGuard} from "./services/guard/home.guard";
+import {authGuard} from "./services/guard/auth.guard";
 
 export const routes: Routes = [
-    { path : '', component : LoginComponent },
+    { path : '', component : LoginComponent, canActivate: [authGuard] },
     { path : 'login', component : LoginComponent },
     { path : 'signup', component : InscriptionComponent },
     {
       path : 'home',
       component : HomeComponent,
+      canActivate: [homeGuard],
       children : [
         { path : '', component : ProduitsComponent },
         { path : 'produits', component : ProduitsComponent },
