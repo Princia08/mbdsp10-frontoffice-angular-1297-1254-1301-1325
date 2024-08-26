@@ -20,4 +20,8 @@ export class UserService {
   login(user: any): Observable<any> {
     return this.http.post(this.url + '/auth/login', user);
   }
+
+  rate(data: any): Observable<any> {
+    return this.http.post(this.url + '/users/rate', data);
+  }
 }

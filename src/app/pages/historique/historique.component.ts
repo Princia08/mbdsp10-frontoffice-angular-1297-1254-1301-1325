@@ -3,6 +3,7 @@ import {NgClass, NgStyle} from "@angular/common";
 import {Router} from "@angular/router";
 import {ExchangeService} from "../../services/exchange.service";
 import {FormsModule} from "@angular/forms";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-historique',
@@ -22,17 +23,18 @@ export class HistoriqueComponent implements OnInit {
   latitude: number = 0;
   longitude: number = 0;
   canOpenRating = true;
-  displayStyleRating= "block";
+  displayStyleRating= "none";
   stars: number[] = [1, 2, 3, 4, 5];
   rating: number = 0;
   comment: string = '';
+  concerned_id = '';
 
   ngOnInit() {
     this.getAllExchanges();
     this.getCurrentLocation();
   }
 
-  constructor(private router: Router, private exchangeService: ExchangeService) {
+  constructor(private userService: UserService, private router: Router, private exchangeService: ExchangeService) {
   }
 
   getAllExchanges() {
@@ -69,7 +71,7 @@ export class HistoriqueComponent implements OnInit {
     return status === 'ACCEPTED'
   }
 
-  receiveExchange(exchangeId: string) {
+  receiveExchange(exchangeId: string, concerned_id: string) {
     const data = {
       accept: true,
       longitude: this.longitude,
@@ -80,6 +82,7 @@ export class HistoriqueComponent implements OnInit {
       next: () => {
         this.canOpenRating = true
         this.displayStyleRating = 'block'
+        this.concerned_id = concerned_id
       },
       error: () => {}
     });
@@ -134,8 +137,18 @@ export class HistoriqueComponent implements OnInit {
   // Submit the rating and comment
   submitRating(): void {
     if (this.rating > 0 && this.comment.trim()) {
-      // Perform the action to send the rating and comment
-      console.log("Rating:", this.rating, "Comment:", this.comment);
+      const dataRating = {
+        "concerned_user_id" : this.concerned_id,
+        "review" : this.comment,
+        "rating": this.rating
+      }
+
+      // call API
+      this.userService.rate(dataRating).subscribe({
+        next: () => {
+          window.location.reload();
+        }
+      });
 
       // Reset after submission
       this.rating = 0;
@@ -144,5 +157,13 @@ export class HistoriqueComponent implements OnInit {
     } else {
       alert('Veuillez sélectionner une note et écrire un commentaire.');
     }
+  }
+
+  isOwner(owner_id: string) {
+      return this.idUser == owner_id
+  }
+
+  isTaker(taker_id: string) {
+    return this.idUser == taker_id
   }
 }
