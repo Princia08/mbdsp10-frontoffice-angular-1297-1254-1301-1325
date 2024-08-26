@@ -1,14 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {NgClass} from "@angular/common";
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {NgClass, NgStyle} from "@angular/common";
 import {Router} from "@angular/router";
-import {ProduitService} from "../../services/produit.service";
 import {ExchangeService} from "../../services/exchange.service";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-historique',
   standalone: true,
   imports: [
-    NgClass
+    NgClass,
+    NgStyle,
+    FormsModule
   ],
   templateUrl: './historique.component.html',
   styleUrl: './historique.component.css'
@@ -19,6 +21,11 @@ export class HistoriqueComponent implements OnInit {
   idUser: string = localStorage.getItem('id') ?? '';
   latitude: number = 0;
   longitude: number = 0;
+  canOpenRating = true;
+  displayStyleRating= "block";
+  stars: number[] = [1, 2, 3, 4, 5];
+  rating: number = 0;
+  comment: string = '';
 
   ngOnInit() {
     this.getAllExchanges();
@@ -69,7 +76,13 @@ export class HistoriqueComponent implements OnInit {
       latitude: this.latitude
     };
 
-    this.exchangeService.receiveExchange(exchangeId, data).subscribe();
+    this.exchangeService.receiveExchange(exchangeId, data).subscribe({
+      next: () => {
+        this.canOpenRating = true
+        this.displayStyleRating = 'block'
+      },
+      error: () => {}
+    });
   }
 
   getCurrentLocation() {
@@ -106,6 +119,30 @@ export class HistoriqueComponent implements OnInit {
     });
   }
 
+  closePopupRating(){
+    this.displayStyleRating = "none";
+  }
+
   openScanner() {
+  }
+
+  rate(star: number): void {
+    this.rating = star;
+    console.log("rating "+this.rating)
+  }
+
+  // Submit the rating and comment
+  submitRating(): void {
+    if (this.rating > 0 && this.comment.trim()) {
+      // Perform the action to send the rating and comment
+      console.log("Rating:", this.rating, "Comment:", this.comment);
+
+      // Reset after submission
+      this.rating = 0;
+      this.comment = '';
+      this.closePopupRating();
+    } else {
+      alert('Veuillez sélectionner une note et écrire un commentaire.');
+    }
   }
 }

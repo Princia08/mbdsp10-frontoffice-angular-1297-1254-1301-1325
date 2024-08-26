@@ -28,3 +28,46 @@
     <button (click)="openScanner()">QR</button>
   </div>
 </div>
+
+@if(canOpenRating) {
+  <div class="modal" [ngStyle]="{'display': displayStyleRating}"
+       style="background: rgba(65, 65, 65, 0.1); backdrop-filter: blur(3px);">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background-color: rgba(63,63,63,0.89);">
+        <div class="modal-body" style="text-align:center;">
+          <h5 class="modal-title" style="padding:5% 5%; text-align: center; color: white">
+            Veuillez noter l'utilisateur avec qui vous avez échangé les produits
+          </h5>
+
+          <!-- Star Rating Section -->
+          <div class="star-rating" style="margin-bottom: 15px;">
+           @for(star of stars; track star; let i = $index) {
+             @if(rating >= (i + 1)) {
+               <i (click)="rate(i + 1)" class="fa fa-star" style="font-size: 30px; color: #FFD700; cursor: pointer;"></i>
+             }
+             @else {
+               <i (click)="rate(i + 1)" class="fa-regular fa-star" style="font-size: 30px; color: #FFD700; cursor: pointer;"></i>
+             }
+           }
+          </div>
+
+           <!-- Comment Section -->
+          <textarea [(ngModel)]="comment"
+                    placeholder="Laissez un commentaire"
+                    rows="3"
+                    style="width: 100%; border-radius: 5px; padding: 10px;"></textarea>
+
+          <div style="margin-top: 20px;">
+            <button style="color: white; margin-right: 4%" type="button" class="btn" (click)="closePopupRating()">
+              Annuler
+            </button>
+            <button type="button" class="btn" style="background-color:#6f56dc; color: white" (click)="submitRating()">
+              Envoyer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+}
