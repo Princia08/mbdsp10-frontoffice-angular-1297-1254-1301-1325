@@ -22,7 +22,7 @@ export class HistoriqueComponent implements OnInit {
   idUser: string = localStorage.getItem('id') ?? '';
   latitude: number = 0;
   longitude: number = 0;
-  canOpenRating = true;
+  canOpenRating = false;
   displayStyleRating= "none";
   stars: number[] = [1, 2, 3, 4, 5];
   rating: number = 0;
