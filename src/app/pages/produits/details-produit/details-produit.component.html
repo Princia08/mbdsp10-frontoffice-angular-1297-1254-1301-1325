@@ -1,90 +1,93 @@
 <div class="container">
-    @if(!listProducts) {
-      <div class="row">
-        <div class="col-md-5 d-flex justify-content-center align-items-center" style="margin-right: 15px; background: #e8e8e8;">
-            <img src="{{ product.product_image }}" alt="{{ product.product_name }}">
-        </div>
-        <div class="col-md-6">
-          <div class="product">
-            <div class="product-title">{{ product.product_name }}</div>
-            <hr class="product-line">
-            <div class="product-description">{{ product.description }}</div>
-            <div style="display: inline-flex;">
-              <div style="margin-top: 15px; width: 38px; height: 38px; border-radius: 50%; overflow: hidden;">
-                <img src="assets/img/produits/person.png" style="width: 100%; height: 100%; object-fit: cover"/>
+  @if(product){
+      @if(!listProducts) {
+        <div class="row">
+          <div class="col-md-5 d-flex justify-content-center align-items-center" style="margin-right: 15px; background: #e8e8e8;">
+              <img src="{{ product.product_image }}" alt="{{ product.product_name }}">
+          </div>
+          <div class="col-md-6">
+            <div class="product">
+              <div class="product-title">{{ product.product_name }}</div>
+              <hr class="product-line">
+              <div class="product-description">{{ product.description }}</div>
+              <div style="display: inline-flex;">
+                <div style="margin-top: 15px; width: 38px; height: 38px; border-radius: 50%; overflow: hidden;">
+                  <img src="assets/img/produits/person.png" style="width: 100%; height: 100%; object-fit: cover"/>
+                </div>
+                <a style="display:flex; margin-top: 20px; margin-left: 10px;">{{ product.actual_owner.username }}</a>
               </div>
-              <a style="display:flex; margin-top: 20px; margin-left: 10px;">{{ product.actual_owner.username }}</a>
-            </div>
-            <div style="margin-top: 15px">
-              @if(isMyProduct) {
-                <button class="btn btn-primary btn-product" style="background: #2baac6" (click)="updateProduct(id)">Modifier</button>
-                <button class="btn btn-success btn-product" style="background: #d33c3c" (click)="delete()" >Supprimer</button>
-              } @else {
-                <button class="btn btn-primary btn-product" style="background: #2baac6" (click)="exchange(product.actual_owner.id)">Echanger</button>
-              }
+              <div style="margin-top: 15px">
+                @if(isMyProduct) {
+                  <button class="btn btn-primary btn-product" style="background: #2baac6" (click)="updateProduct(id)">Modifier</button>
+                  <button class="btn btn-success btn-product" style="background: #d33c3c" (click)="delete()" >Supprimer</button>
+                } @else {
+                  <button class="btn btn-primary btn-product" style="background: #2baac6" (click)="exchange(product.actual_owner.id)">Echanger</button>
+                }
+              </div>
             </div>
           </div>
         </div>
+      }
+
+    @if(listProducts && !listMyProducts) {
+      <div class="row" style="display: flex; justify-content: center">
+        <div class="col-md-9">
+          <h5 style="text-align: center">Sélectionner parmi les produits de {{ product.actual_owner.username }} ceux dont vous vouliez échanger</h5>
+          <div class="layout">
+            @for(product of listProducts; track product.id) {
+              <div class="card">
+                <label class="cl-checkbox">
+                  <input type="checkbox" [value]="product.id" (change)="onCheckboxChange($event, product.id, product.actual_owner.id)">
+                  <span></span>
+                </label>
+                <div class="img-exchange">
+                  <img src="{{ product.product_image }}">
+                </div>
+                <div class="details">
+                  <p class="title">{{ product.product_name }}</p>
+                  <a>{{ product.actual_owner.username }}</a>
+                  <a>  .  </a>
+                  <a>{{ product.createdAt | date:'dd-MM-yyyy HH:mm:ss' }}</a>
+                </div>
+              </div>
+            }
+          </div>
+          @if(!listMyProducts) {
+            <button class="btn btn-primary btn-product" style="background: #2baac6; margin-left: 38px; margin-top: 38px;" (click)="chooseMyProduct()">Continuer</button>
+          }
+        </div>
+      </div>
+    } @if(listMyProducts) {
+      <div class="row" style="display: flex; justify-content: center">
+        <div class="col-md-9">
+          <h5 style="text-align: center">Sélectionner parmi vos produits ceux dont vous vouliez échanger</h5>
+          <div class="layout">
+            @for(product of listMyProducts; track product.id) {
+              <div class="card">
+                <label class="cl-checkbox">
+                  <input type="checkbox" [value]="product.id" (change)="onCheckboxChangeMyProduct($event, product.id)">
+                  <span></span>
+                </label>
+                <div class="img-exchange">
+                  <img src="{{ product.product_image }}">
+                </div>
+                <div class="details">
+                  <p class="title">{{ product.product_name }}</p>
+                  <a>{{ product.actual_owner.username }}</a>
+                  <a>  .  </a>
+                  <a>{{ product.createdAt | date:'dd-MM-yyyy HH:mm:ss' }}</a>
+                </div>
+              </div>
+            }
+          </div>
+          @if(listMyProducts) {
+            <p style="margin-left: 38px; margin-top: 20px;">Adresse de livraison: <input type="text" [(ngModel)]="delivery_address" /></p>
+            <button class="btn btn-primary btn-product" style="background: #c62b2b; margin-left: 38px; margin-top: 24px;" (click)="cancel()">Annuler</button>
+            <button class="btn btn-primary btn-product" style="background: #2baac6; margin-left: 10px; margin-top: 24px;" (click)="confirm()">Confirmer</button>
+          }
+        </div>
       </div>
     }
-
-  @if(listProducts && !listMyProducts) {
-    <div class="row" style="display: flex; justify-content: center">
-      <div class="col-md-9">
-        <h5 style="text-align: center">Sélectionner parmi les produits de {{ product.actual_owner.username }} ceux dont vous vouliez échanger</h5>
-        <div class="layout">
-          @for(product of listProducts; track product.id) {
-            <div class="card">
-              <label class="cl-checkbox">
-                <input type="checkbox" [value]="product.id" (change)="onCheckboxChange($event, product.id, product.actual_owner.id)">
-                <span></span>
-              </label>
-              <div class="img-exchange">
-                <img src="{{ product.product_image }}">
-              </div>
-              <div class="details">
-                <p class="title">{{ product.product_name }}</p>
-                <a>{{ product.actual_owner.username }}</a>
-                <a>  .  </a>
-                <a>{{ product.createdAt | date:'dd-MM-yyyy HH:mm:ss' }}</a>
-              </div>
-            </div>
-          }
-        </div>
-        @if(!listMyProducts) {
-          <button class="btn btn-primary btn-product" style="background: #2baac6; margin-left: 38px; margin-top: 38px;" (click)="chooseMyProduct()">Continuer</button>
-        }
-      </div>
-    </div>
-  } @if(listMyProducts) {
-    <div class="row" style="display: flex; justify-content: center">
-      <div class="col-md-9">
-        <h5 style="text-align: center">Sélectionner parmi vos produits ceux dont vous vouliez échanger</h5>
-        <div class="layout">
-          @for(product of listMyProducts; track product.id) {
-            <div class="card">
-              <label class="cl-checkbox">
-                <input type="checkbox" [value]="product.id" (change)="onCheckboxChangeMyProduct($event, product.id)">
-                <span></span>
-              </label>
-              <div class="img-exchange">
-                <img src="{{ product.product_image }}">
-              </div>
-              <div class="details">
-                <p class="title">{{ product.product_name }}</p>
-                <a>{{ product.actual_owner.username }}</a>
-                <a>  .  </a>
-                <a>{{ product.createdAt | date:'dd-MM-yyyy HH:mm:ss' }}</a>
-              </div>
-            </div>
-          }
-        </div>
-        @if(listMyProducts) {
-          <p style="margin-left: 38px; margin-top: 20px;">Adresse de livraison: <input type="text" [(ngModel)]="delivery_address" /></p>
-          <button class="btn btn-primary btn-product" style="background: #c62b2b; margin-left: 38px; margin-top: 24px;" (click)="cancel()">Annuler</button>
-          <button class="btn btn-primary btn-product" style="background: #2baac6; margin-left: 10px; margin-top: 24px;" (click)="confirm()">Confirmer</button>
-        }
-      </div>
-    </div>
   }
+   
 </div>
