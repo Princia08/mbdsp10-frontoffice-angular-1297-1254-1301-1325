@@ -20,9 +20,9 @@
       }
       @if(canReceive(exchange.status)) {
         @if(isOwner(exchange.owner_proposition.user_id)) {
-          <button class="btn btn-sm btn-primary btn-product" style="margin-left: 30px" (click)="receiveExchange(exchange.id, exchange.owner_proposition.user_id)">Recevoir</button>
-        } @else if(isTaker(exchange.taker_proposition.user_id)) {
           <button class="btn btn-sm btn-primary btn-product" style="margin-left: 30px" (click)="receiveExchange(exchange.id, exchange.taker_proposition.user_id)">Recevoir</button>
+        } @else if(isTaker(exchange.taker_proposition.user_id)) {
+          <button class="btn btn-sm btn-primary btn-product" style="margin-left: 30px" (click)="receiveExchange(exchange.id, exchange.owner_proposition.user_id)">Recevoir</button>
         }
       }
     </div>
