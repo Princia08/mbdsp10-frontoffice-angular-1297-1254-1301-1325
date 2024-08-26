@@ -7,15 +7,20 @@
           <span class="title">Produits</span>
         </span>
       </a>
-      <a mat-list-item routerLink="addProposition">
+      <a mat-list-item routerLink="mes-produits">
         <span class="list-item">
         <mat-icon>sync alt</mat-icon>
-          <span>Propositions</span>
+          <span>Mes produits</span>
         </span>
       </a>
-      <a mat-list-item routerLink="/contact">
+      <a mat-list-item routerLink="historique">
         <span class="list-item">
           <mat-icon>list</mat-icon>Historique
+        </span>
+      </a>
+      <a mat-list-item (click)="logout()">
+        <span class="list-item">
+          <mat-icon>logout</mat-icon>Déconnexion
         </span>
       </a>
     </mat-nav-list>

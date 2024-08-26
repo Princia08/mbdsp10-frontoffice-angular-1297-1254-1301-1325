@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="list-title">Liste des échanges</h2>
+
+  @for (exchange of exchanges; track exchange.id) {
+    <div class="exchange-card" >
+      <div class="exchange-info">
+        <p><strong>Date: </strong>{{ exchange.createdAt }}</p>
+        <p><strong>Owner: </strong>{{ exchange.owner_proposition.user.username }}</p>
+        <p><strong>Taker: </strong>{{ exchange.taker_proposition.user.username }}</p>
+        <p><strong>Owner products: </strong>{{ exchange.ownerProducts }}</p>
+        <p><strong>Taker products: </strong>{{ exchange.takerProducts }}</p>
+        <p><strong>Delivery address: </strong>{{ exchange.delivery_address }}</p>
+      </div>
+      <div class="status-tag" [ngClass]="{'created': exchange.status === 'CREATED', 'cancelled': exchange.status === 'CANCELLED', 'blocked': exchange.status === 'BLOCKED', 'accepted': exchange.status === 'ACCEPTED', 'received': exchange.status === 'RECEIVED'}">
+        {{ exchange.status }}
+      </div>
+      @if(canAccept(exchange.owner_proposition.user_id, exchange.status)) {
+        <button class="btn btn-sm btn-danger btn-product" style="margin-left: 30px" (click)="cancelExchange(exchange.id)">Refuser</button>
+        <button class="btn btn-sm btn-success btn-product" style="margin-left: 10px" (click)="acceptExchange(exchange.id)">Accepter</button>
+      }
+      @if(canReceive(exchange.status)) {
+        <button class="btn btn-sm btn-primary btn-product" style="margin-left: 30px" (click)="receiveExchange(exchange.id)">Recevoir</button>
+      }
+    </div>
+  }
+
+  <div class="fab-button">
+    <button (click)="openScanner()">QR</button>
+  </div>
+</div>

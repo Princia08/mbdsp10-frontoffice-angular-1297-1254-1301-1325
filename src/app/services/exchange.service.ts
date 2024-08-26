@@ -16,4 +16,20 @@ export class ExchangeService {
   createExchange(exchange: any): Observable<any> {
     return this.http.post(this.url + '/exchanges', exchange);
   }
+
+  getAllExchanges(): Observable<any> {
+    return this.http.get(this.url + '/exchanges');
+  }
+
+  acceptExchange(exchangeId: string): Observable<any> {
+    return this.http.post(this.url + '/exchanges/' + exchangeId + '/accept', {});
+  }
+
+  cancelExchange(exchangeId: string): Observable<any> {
+    return this.http.post(this.url + '/exchanges/' + exchangeId + '/cancel', {});
+  }
+
+  receiveExchange(exchangeId: string, data: any): Observable<any> {
+    return this.http.put(this.url + '/exchanges/' + exchangeId + '/receive', data);
+  }
 }
