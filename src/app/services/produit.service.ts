@@ -35,4 +35,8 @@ export class ProduitService {
   getProductByUserId(userId: string): Observable<any> {
     return this.http.get(this.url + '/products?userId='+userId);
   }
+
+  uploadImage(file: any, productId: string): Observable<any> {
+    return this.http.post(this.url + '/products/uploadImage/id='+productId, file);
+  }
 }

@@ -21,6 +21,7 @@ export class AddProduitComponent implements OnInit {
   fileName!: string;
   categories: any;
   selectedCategories: string[] = [];
+  file: any;
 
   ngOnInit() {
     this.getAllCategories();
@@ -33,7 +34,6 @@ export class AddProduitComponent implements OnInit {
   produitForm = new FormGroup({
     product_name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-   // file: new FormControl('', [Validators.required])
     categories: new FormControl([''], [Validators.required])
   })
 
@@ -43,6 +43,7 @@ export class AddProduitComponent implements OnInit {
       this.fileName = file.name;
       const formData = new FormData();
       formData.append("image", file, file.name);
+      this.file = file;
       // const upload$ = this.http.post(this.url + "/upload", formData);
       // upload$.subscribe();
     }
@@ -61,11 +62,17 @@ export class AddProduitComponent implements OnInit {
 
   addProduct() {
     this.produitForm.patchValue({categories: this.selectedCategories})
-    console.log(this.produitForm.value);
     this.produitService.addProduct(this.produitForm.value).subscribe({
       next: res => {
-        console.log("form " + this.produitForm.value);
-        console.log("res " + res);
+        console.log(this.file);
+        this.produitService.uploadImage(this.file, res.data.id).subscribe({
+          next: res => {
+            console.log(res);
+          },
+          error: err => {
+            console.log(err);
+          }
+        });
         this.router.navigate(['/home/details-produit', res.data.id]);
 
       },
